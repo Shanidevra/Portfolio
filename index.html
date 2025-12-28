@@ -547,6 +547,52 @@
             font-size: 1.2rem;
         }
 
+        /* Chatbot Styles - Minimal CSS for structure only */
+        .chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-container {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            max-width: 90%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .chat-container.active {
+            display: block;
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .about-content,
@@ -604,6 +650,12 @@
                 gap: 20px;
                 text-align: center;
             }
+            
+            .chat-container {
+                width: 90%;
+                right: 5%;
+                bottom: 100px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -618,6 +670,11 @@
             .social-icons a {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .chat-container {
+                width: 95%;
+                right: 2.5%;
             }
         }
     </style>
@@ -935,6 +992,34 @@
         </div>
     </footer>
 
+    <!-- Chatbot UI Structure -->
+    <button class="chat-btn" id="chatToggle">🤖</button>
+  
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <span>AI Assistant</span>
+            <button class="close-btn" id="closeChat">×</button>
+        </div>
+        <div id="chatbox">
+            <div class="bot">
+                Hello! I'm your AI assistant. How can I help you today?
+                <button class="audio-btn" data-text="Hello! I'm your AI assistant. How can I help you today?">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <button id="micBtn">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- DOM Content Loader for Portfolio -->
     <script>
         // Mobile Navigation Toggle
         const hamburger = document.querySelector('.hamburger');
@@ -988,5 +1073,8 @@
             }
         });
     </script>
+
+    <!-- Load Chatbot Script -->
+    <script src="chatbot.js" defer></script>
 </body>
 </html>
